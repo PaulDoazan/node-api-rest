@@ -1,0 +1,22 @@
+{
+  "name": "node-api-rest",
+  "version": "1.0.0",
+  "description": "Node Express SQL lesson to handle customers",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulDoazan/node-api-rest.git"
+  },
+  "author": "Paul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulDoazan/node-api-rest/issues"
+  },
+  "homepage": "https://github.com/PaulDoazan/node-api-rest#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
