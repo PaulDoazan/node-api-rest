@@ -4,19 +4,28 @@ const { Op } = require('sequelize')
 module.exports = (app) => {
   app.get('/api/pokemons', (req, res) => {
     if (req.query.name) {
-      const name = req.query.name;
-      return Pokemon.findAll(
+      const name = req.query.name
+      const limit = parseInt(req.query.limit) || 5
+
+      if (name.length < 2) {
+        const message = `Le terme de recherche doit contenir au moins 2 caractères.`
+        return res.status(400).json({ message })
+      }
+
+      return Pokemon.findAndCountAll(
         {
           where: {
-            name: { [Op.eq]: name }
-          }
+            name: { [Op.like]: `%${name}%` }
+          },
+          order: ['name'],
+          limit: customLimit
         })
-        .then(pokemons => {
-          const message = `Il y a ${pokemons.length} pokemons qui correspondent au terme de recherche ${name}.`
-          res.json({ message, data: pokemons })
+        .then(({ count, rows }) => {
+          const message = `Il y a ${count} pokemons qui correspondent au terme de recherche ${name}.`
+          res.json({ message, data: rows })
         })
     } else {
-      Pokemon.findAll()
+      Pokemon.findAll({ order: ['name'] })
         .then(pokemons => {
           const message = 'La liste des pokémons a bien été récupérée.'
           res.json({ message, data: pokemons })
