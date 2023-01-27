@@ -4,7 +4,7 @@
   "description": "Node Express SQL lesson to handle customers",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app.js"
   },
   "repository": {
