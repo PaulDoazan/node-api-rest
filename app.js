@@ -14,9 +14,20 @@ app
 
 sequelize.initDb()
 
-// endpoints here
+// endpoints declaration
+app.get('/', (req, res) => {
+    res.send('Hello World')
+})
 require('./src/routes/findAllPokemons')(app)
 require('./src/routes/findPokemonByPk')(app)
 require('./src/routes/createPokemon')(app)
+require('./src/routes/updatePokemon')(app)
+require('./src/routes/deletePokemon')(app)
+
+// errors handlers
+app.use(({res}) => {
+    const message = 'Impossible de trouver la ressource demandee. Vous pouvez essayez une autre url.'
+    res.status(404).json({message})
+})
 
 app.listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
