@@ -1,7 +1,7 @@
 const express = require('express')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
-const sequelize = require('./src/db/sequelize')
+//const sequelize = require('./src/db/sequelize')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -10,7 +10,7 @@ app
     .use(favicon(__dirname + '/favicon.ico'))
     .use(bodyParser.json())
 
-sequelize.initDb()
+//sequelize.initDb()
 
 // endpoints declaration
 app.get('/', (req, res) => {
